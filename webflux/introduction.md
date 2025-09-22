@@ -1,0 +1,3 @@
+# Introducción a WebFlux
+- WebFlux es un módulo de Spring Framework que permite construir aplicaciones web reactivas. A diferencia del modelo tradicional basado en servlets, WebFlux utiliza un enfoque no bloqueante y asíncrono, lo que mejora la escalabilidad y el rendimiento de las aplicaciones, especialmente bajo cargas elevadas.
+- WebFlux es ideal para aplicaciones que requieren manejar un gran número de conexiones concurrentes, como aplicaciones en tiempo real, APIs RESTful y servicios que interactúan con sistemas externos de manera intensiva.
