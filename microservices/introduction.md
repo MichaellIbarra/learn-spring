@@ -1,0 +1,2 @@
+# Introducción a Microservicios
+- Los microservicios son una arquitectura de software que divide una aplicación en servicios pequeños e independientes. Cada servicio se enfoca en una funcionalidad específica y puede ser desarrollado, desplegado y escalado de manera autónoma. Esta arquitectura facilita la gestión de aplicaciones complejas, mejora la escalabilidad y permite una mayor flexibilidad en el desarrollo.
