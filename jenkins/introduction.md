@@ -40,6 +40,10 @@ docker compose up -d
 docker exec -it jenkins bash
 ```
 
+# Arquitectura de Jenkins
+- Jenkins sigue una arquitectura maestro-agente, donde el servidor maestro gestiona la configuración, los trabajos y la coordinación de los agentes que ejecutan las tareas asignadas. Esta arquitectura permite distribuir la carga de trabajo y mejorar la escalabilidad del sistema.
+- El servidor maestro es responsable de gestionar la interfaz web, almacenar la configuración y coordinar la ejecución de trabajos. Los agentes son nodos remotos que ejecutan las tareas asignadas por el maestro, permitiendo distribuir la carga de trabajo y mejorar la eficiencia del proceso de CI/CD.
+
 ## Términos comunes
 - Merge Conflict: Ocurre cuando dos desarrolladores han realizado cambios en la misma parte del código y Jenkins no puede fusionarlos automáticamente. intentan integrar su código.
 - Build: Proceso de compilar y ensamblar el código
@@ -47,3 +51,11 @@ docker exec -it jenkins bash
 - Pipeline: Secuencia de pasos automatizados que definen el proceso de construcción, prueba y despliegue de una aplicación en Jenkins. realiza una integración, lo que ayuda a identificar y resolver problemas de manera temprana.
 - Self-hosted: Jenkins puede ser instalado y ejecutado en servidores propios, lo que permite un mayor control y personalización del entorno de CI/CD.
 - On premise: Jenkins puede ser desplegado en infraestructuras locales, lo que es ideal para organizaciones que requieren cumplir con políticas de seguridad y privacidad estrictas. realizan cambios en el código, lo que ayuda a identificar y resolver problemas de manera temprana.
+- jenkins job: tareas ejecutables que son supervisadas y controladas por Jenkins para automatizar procesos de desarrollo de software.
+- jenkins agent: componente de Jenkins que se ejecuta en nodos remotos para ejecutar tareas y trabajos asignados por el servidor maestro de Jenkins.
+- jenkins master: servidor principal de Jenkins que gestiona la configuración, los trabajos y la coordinación de los agentes para ejecutar tareas de CI/CD.
+- jenkins slave: son máquinas programadas para construir los proyectos que el maestro le requiere.
+- jenkins executor: un ejecutor es una secuencia separada de compilaciones que se ejecutarán en un nodo en paralelo.
+- plugin: es una parte de software adicional a la funcionalidad básica del jenkins server.
+- #!/bin/bash: es una línea que se encuentra al inicio de un script de bash y que indica al sistema operativo que debe utilizar el intérprete de comandos bash para ejecutar el script, llamado shebang.
+- sleep 5: es un comando en bash que pausa la ejecución del script durante 5 segundos.
