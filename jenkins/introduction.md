@@ -59,3 +59,5 @@ docker exec -it jenkins bash
 - plugin: es una parte de software adicional a la funcionalidad básica del jenkins server.
 - #!/bin/bash: es una línea que se encuentra al inicio de un script de bash y que indica al sistema operativo que debe utilizar el intérprete de comandos bash para ejecutar el script, llamado shebang.
 - sleep 5: es un comando en bash que pausa la ejecución del script durante 5 segundos.
+- opt: es un directorio en sistemas Unix/Linux que se utiliza para almacenar software adicional o paquetes opcionales que no forman parte del sistema base.
+- parametrizado: se refiere a la capacidad de un proceso o sistema para aceptar parámetros o variables de entrada que pueden modificar su comportamiento o resultados.
