@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   jenkins:
     image: jenkins/jenkins
@@ -8,7 +10,54 @@ services:
       - "50000:50000" # Puerto para agentes
     volumes:
       - jenkins_home:/var/jenkins_home
-    user: root # Permite instalar plugins y manejar permisos fácilmente
+      - /var/run/docker.sock:/var/run/docker.sock   # Permite realizar Docker builds desde pipelines
+      - ./jenkins/init.groovy.d:/var/jenkins_home/init.groovy.d:ro # scripts de inicialización opcionales
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    user: root # Para desarrollo; cambiar a usuario jenkins en producción
+    networks:
+      - jenkins-net
+
+  postgres:
+    image: postgres:14
+    container_name: sonarqube_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: sonarpassw
+      POSTGRES_DB: sonar
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - jenkins-net
+
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    restart: unless-stopped
+    ports:
+      - "9000:9000"   # Interfaz web de SonarQube
+    environment:
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonarpassw
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://postgres:5432/sonar
+      - SONARQUBE_WEB_JAVA_OPTS=-Xmx512m -Xms128m
+    depends_on:
+      - postgres
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    networks:
+      - jenkins-net
 
 volumes:
   jenkins_home:
+  postgres_data:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+
+networks:
+  jenkins-net:
+    driver: bridge
