@@ -12,8 +12,6 @@ services:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock   # Permite realizar Docker builds desde pipelines
       - ./jenkins/init.groovy.d:/var/jenkins_home/init.groovy.d:ro # scripts de inicialización opcionales
-    environment:
-      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
     user: root # Para desarrollo; cambiar a usuario jenkins en producción
     networks:
       - jenkins-net
